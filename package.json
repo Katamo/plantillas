@@ -1,0 +1,38 @@
+{
+  "name": "plantillas",
+  "version": "1.0.0",
+  "description": "A project to share and store templates, code blocks, components and modules generated with css Bedrock",
+  "keywords": [
+    "bedrock",
+    "modules",
+    "components",
+    "templates",
+    "codeblocks"
+  ],
+  "license": "ISC",
+  "author": "Óscar de la Mata",
+  "type": "module",
+  "exports": {
+    "./components/*": "./src/components/*",
+    "./modules/*": "./src/modules/*",
+    "./styles/*": "./src/styles/*"
+  },
+  "scripts": {
+    "dev": "vite",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@bedrock/core": "file:../css_bedrock",
+    "@histoire/plugin-vue": "^0.17.17",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "histoire": "^0.17.17",
+    "sass": "^1.99.0",
+    "vite": "^5.0.0",
+    "vue": "^3.4.0"
+  }
+}

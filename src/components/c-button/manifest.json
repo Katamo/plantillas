@@ -1,0 +1,7 @@
+{
+  "name": "c-button",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "tags": ["cta", "interactive"]
+}
