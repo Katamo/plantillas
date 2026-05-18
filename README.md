@@ -103,8 +103,8 @@ De este modo cada proyecto compila los componentes con sus propios tokens de Bed
 ### 4. Importar componentes
 
 ```js
-import CButton from 'plantillas/components/c-button/c-button.vue'
-import MHeader from 'plantillas/modules/m-header/m-header.vue'
+import { CBrandLogo } from 'plantillas/components/brand/logo'
+import { MHeader }    from 'plantillas/modules/m-header'
 ```
 
 ```scss

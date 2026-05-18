@@ -1,0 +1,90 @@
+@use 'bedrock-config' as *;
+@use '@bedrock/core/image';
+@use '@bedrock/core/logo';
+
+:root {
+  --c-brand-logo-gap: #{spacing(3)};
+}
+
+.c-brand-logo {
+  display: flex;
+  max-height: 100%;
+  overflow: hidden;
+
+
+
+  &__logo {
+    max-height: 100%;
+    overflow: hidden;
+
+    .b-logo,
+    .logo {
+      max-height: 100%;
+    }
+
+    figure {
+      max-height: 100%;
+      margin: 0;
+    }
+
+    img {
+      max-height: 100%;
+      width: auto;
+    }
+  }
+
+  .b-logo {
+    display: flex;
+    flex: 1;
+    max-height: 100%;
+  }
+
+  .b-logo .logo {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--c-brand-logo-gap);
+    max-height: 100%;
+  }
+
+  .b-image {
+    height: 100%;
+    width: auto;
+  }
+
+  // texto izquierda + imagen derecha
+  @include attr(layout, text-image) {
+    .b-logo .logo {
+      flex-direction: row-reverse;
+    }
+  }
+
+  // imagen arriba + texto abajo
+  @include attr(layout, image-top) {
+    .b-logo .logo {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .b-image {
+      flex: 1;
+      min-height: 0;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  // texto arriba + imagen abajo
+  @include attr(layout, text-top) {
+    .b-logo .logo {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+    .b-image {
+      flex: 1;
+      min-height: 0;
+      height: auto;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@use 'bedrock-config' as *;
+
+// Use Bedrock mixins to define the grid layout
+@include grid-layout('default') {
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+
+    @include grid-area('header') {
+        // styles for header area if needed
+    }
+
+    @include grid-area('main') {
+        // styles for main area
+    }
+
+    @include grid-area('footer') {
+        // styles for footer area
+    }
+}

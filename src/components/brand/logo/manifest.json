@@ -1,0 +1,8 @@
+{
+  "name": "c-brand-logo",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "bedrock-components": ["b-logo", "b-image"],
+  "tags": ["brand", "logo", "identity"]
+}
