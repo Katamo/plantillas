@@ -1,12 +1,12 @@
 <template class="c-layout-default">
     <BGridLayout layout="default">
-      <BGridArea area="header" tag="header">
+      <BGridArea area="header">
         <slot name="header" />
       </BGridArea>
-      <BGridArea area="main" tag="main">
+      <BGridArea area="main">
         <slot />
       </BGridArea>
-      <BGridArea area="footer" tag="footer">
+      <BGridArea area="footer">
         <slot name="footer" />
       </BGridArea>
     </BGridLayout>

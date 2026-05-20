@@ -1,0 +1,8 @@
+{
+  "name": "m-header-logo-nav",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": [],
+  "bedrock-components": ["b-wrapper", "b-grid-layout", "b-grid-area"],
+  "tags": ["header", "navigation", "logo"]
+}

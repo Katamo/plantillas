@@ -1,0 +1,8 @@
+{
+  "name": "c-layout-blog",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "bedrock-components": ["b-grid-layout", "b-grid-area"],
+  "tags": ["layout", "blog", "header", "footer"]
+}

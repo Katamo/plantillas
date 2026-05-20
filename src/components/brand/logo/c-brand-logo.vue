@@ -10,7 +10,7 @@
 import { BLogo } from '@bedrock/core/vue'
 
 defineProps({
-  src:      { type: String,  required: true },
+  src:      { type: String,  dafault: null },
   alt:      { type: String,  default: '' },
   href:     { type: String,  default: null },
   disabled: { type: Boolean, default: false },

@@ -1,0 +1,20 @@
+@use 'bedrock-config' as *;
+
+@include grid-layout('blog') {
+  grid-template-areas:
+    "header"
+    "main";
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+
+  @include grid-area('header') {
+    position: sticky;
+    top: 0;
+    z-index: z(header);
+  }
+
+  @include grid-area('main') {
+    display: flex;
+    flex-direction: column;
+  }
+}
