@@ -1,6 +1,29 @@
 {
   "stories": [
     {
+      "id": "src-reference-tokens-story-vue",
+      "title": "Tokens",
+      "layout": {
+        "type": "single",
+        "iframe": false
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-reference-tokens-story-vue-0",
+          "title": "Design tokens"
+        }
+      ],
+      "relativePath": "src/reference/tokens.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Reference",
+        "Tokens"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
       "id": "src-composables-use-scroll-shrink-usescrollshrink-story-vue",
       "title": "useScrollShrink",
       "layout": {

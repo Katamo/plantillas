@@ -1,4 +1,4 @@
-import { B as defineComponent, K as h } from "./vendor-DxZlYKFk.js";
+import { C as defineComponent, L as h } from "./vendor-DOvsOfdG.js";
 const BGridLayout = defineComponent({
   name: "BGridLayout",
   inheritAttrs: false,

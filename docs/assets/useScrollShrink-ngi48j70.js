@@ -1,4 +1,4 @@
-import { Z as onMounted, $ as onUnmounted } from "./vendor-DxZlYKFk.js";
+import { _ as onMounted, a0 as onUnmounted } from "./vendor-DOvsOfdG.js";
 function useScrollShrink(el, { enabled = true } = {}) {
   if (!enabled) return;
   let rafId = null;
