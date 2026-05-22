@@ -6,6 +6,7 @@
     "main";
   grid-template-rows: auto 1fr;
   min-height: 100vh;
+  grid-template-columns: minmax(0, 1fr);
 
   @include grid-area('header') {
     position: sticky;
@@ -16,5 +17,9 @@
   @include grid-area('main') {
     display: flex;
     flex-direction: column;
+    
+    & > footer {
+      margin-top: auto;
+    }
   }
 }

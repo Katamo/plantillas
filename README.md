@@ -6,19 +6,49 @@ Librería de componentes y módulos reutilizables construidos sobre [CSS Bedrock
 
 ## Arquitectura
 
-Los componentes siguen la convención de Bedrock:
+Tres tipos de unidades, cada una en su propia carpeta con todos sus archivos co-localizados:
 
 - **Components** (`.c-`) — unidades atómicas de UI
 - **Modules** (`.m-`) — secciones completas de página que componen varios componentes
-
-Cada elemento vive en su propia carpeta con todos sus archivos co-localizados:
+- **Composables** (`use-`) — lógica Vue reutilizable sin UI propia
 
 ```
 src/components/c-button/
-├── c-button.vue          ← componente Vue
-├── c-button.scss         ← estilos (usa Bedrock vía loadPaths)
-├── c-button.story.vue    ← story de Histoire
-└── manifest.json         ← versión y dependencias
+├── index.js              ← re-exporta como named export y default
+├── c-button.vue
+├── c-button.scss
+├── c-button.story.vue
+├── c-button.md
+└── manifest.json
+
+src/modules/m-header/
+├── index.js
+├── m-header.vue
+├── m-header.scss
+├── m-header.story.vue
+├── m-header.md
+└── manifest.json
+
+src/composables/use-scroll-shrink/
+├── index.js
+├── useScrollShrink.js
+├── useScrollShrink.story.vue
+├── useScrollShrink.md
+└── manifest.json
+```
+
+### index.js
+
+Patrón obligatorio en todos los tipos de unidad:
+
+```js
+// componente
+import CButton from './c-button.vue';
+export { CButton, CButton as default };
+
+// composable
+import { useScrollShrink } from './useScrollShrink';
+export { useScrollShrink, useScrollShrink as default };
 ```
 
 ### manifest.json
@@ -33,7 +63,7 @@ src/components/c-button/
 }
 ```
 
-El campo `dependencies` lista otros componentes/módulos de los que depende este elemento, lo que permite resolver el árbol completo antes de exportar.
+El campo `type` acepta `"component"`, `"module"` o `"composable"`. El campo `dependencies` lista otras unidades de plantillas de las que depende, lo que permite resolver el árbol completo antes de exportar.
 
 ---
 
@@ -100,12 +130,15 @@ css: {
 
 De este modo cada proyecto compila los componentes con sus propios tokens de Bedrock.
 
-### 4. Importar componentes
+### 4. Importar componentes y composables
 
 ```js
-import { CBrandLogo } from 'plantillas/components/brand/logo'
-import { MHeader }    from 'plantillas/modules/m-header'
+import { CBrandLogo }     from 'plantillas/components/brand/logo'
+import { MHeaderLogoNav } from 'plantillas/modules/header/logo-nav'
+import { useScrollShrink } from 'plantillas/composables/use-scroll-shrink'
 ```
+
+> Los composables no están en el mapa de exports de `package.json` por defecto. Para habilitarlos en un proyecto consumidor, añadir `"./composables/*": "./src/composables/*"` junto a los demás exports.
 
 ```scss
 // Si necesitas importar estilos por separado
@@ -168,6 +201,85 @@ import CNombre from './c-nombre.vue'
   "tags": []
 }
 ```
+
+---
+
+## Crear un nuevo composable
+
+1. Crear la carpeta `src/composables/use-nombre/`
+2. Añadir los archivos:
+
+**`useNombre.js`**
+```js
+import { onMounted, onUnmounted } from 'vue'
+
+export function useNombre(el, { enabled = true } = {}) {
+  if (!enabled) return
+
+  onMounted(() => { /* setup */ })
+  onUnmounted(() => { /* cleanup */ })
+}
+```
+
+**`index.js`**
+```js
+import { useNombre } from './useNombre';
+export { useNombre, useNombre as default };
+```
+
+**`useNombre.story.vue`**
+
+Los composables no son componentes, por lo que las stories definen mini-componentes inline con `defineComponent` para aislar correctamente cada variante:
+
+```vue
+<script setup>
+import { defineComponent, ref } from 'vue'
+import { useNombre } from './useNombre'
+import docs from './useNombre.md?raw'
+
+const DemoDefault = defineComponent({
+  setup() {
+    const el = ref(null)
+    useNombre(el, { enabled: true })
+    return { el }
+  },
+  template: `<div ref="el">Demo</div>`,
+})
+</script>
+
+<template>
+  <Story title="Composables/useNombre" :docs="docs">
+    <Variant title="Default">
+      <DemoDefault />
+    </Variant>
+  </Story>
+</template>
+```
+
+**`useNombre.md`** — documenta la API, las dependencias (CSS custom props u otras), el contrato de efectos de DOM y un ejemplo de integración en un componente.
+
+**`manifest.json`**
+```json
+{
+  "name": "useNombre",
+  "version": "1.0.0",
+  "type": "composable",
+  "dependencies": [],
+  "tags": []
+}
+```
+
+### Uso desde un componente
+
+```js
+import { ref } from 'vue'
+import { useNombre } from '../../composables/use-nombre' // ruta relativa desde el componente
+
+const el = ref(null)
+useNombre(el, { enabled: props.someFlag })
+```
+
+> Usar siempre rutas relativas para importar composables desde componentes/módulos de plantillas. El alias `@` se resuelve con la config del proyecto consumidor, que apunta a su propio `src/`, no al de plantillas.
 
 ---
 

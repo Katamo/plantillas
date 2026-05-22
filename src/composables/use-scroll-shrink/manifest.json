@@ -1,0 +1,7 @@
+{
+  "name": "useScrollShrink",
+  "version": "1.0.1",
+  "type": "composable",
+  "dependencies": [],
+  "tags": ["scroll", "animation", "height"]
+}

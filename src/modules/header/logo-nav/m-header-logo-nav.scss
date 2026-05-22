@@ -2,9 +2,17 @@
 
 :root {
   --m-header-logo-nav-height: #{spacing(20)};
+  --m-header-logo-nav-height-min: #{spacing(14)};
+  --m-header-logo-nav-shrink-start: 0px;
+  --m-header-logo-nav-shrink-distance: 200px;
 }
 
 .m-header-logo-nav {
+  --scroll-shrink-max: var(--m-header-logo-nav-height);
+  --scroll-shrink-min: var(--m-header-logo-nav-height-min);
+  --scroll-shrink-start: var(--m-header-logo-nav-shrink-start);
+  --scroll-shrink-distance: var(--m-header-logo-nav-shrink-distance);
+
   display: flex;
   height: var(--m-header-logo-nav-height);
   position: relative;
