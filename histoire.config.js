@@ -8,5 +8,9 @@ export default defineConfig({
   outDir: 'docs',
   theme: {
     title: 'Plantillas',
+    logo: {
+      square: '/plantillas/logo.svg',
+      landscape: '/plantillas/logo.svg',
+    },
   },
 })
