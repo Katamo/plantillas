@@ -1,8 +1,8 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/SearchPane.vue-Dvqc6R2W.js","assets/GenericMountStory.vue2-B-mEtBHn.js","assets/vendor-DxZlYKFk.js","assets/story-DCu4s0OH.js","assets/BaseEmpty.vue-DqEJiGqJ.js","assets/MobileOverlay.vue2-BfU9Cym7.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/SearchPane.vue-abf9xT-e.js","assets/GenericMountStory.vue2-DjWFsivF.js","assets/vendor-DxZlYKFk.js","assets/story-CmIyOAwz.js","assets/BaseEmpty.vue-DqEJiGqJ.js","assets/MobileOverlay.vue2-BfU9Cym7.js"])))=>i.map(i=>d[i]);
 import { z as defineComponent, ar as useCssVars, f as computed, ax as useRoute, a8 as ref, a0 as openBlock, n as createElementBlock, t as createVNode, aH as withCtx, h as createBaseVNode, aq as unref, I as Icon, Q as normalizeClass, al as toDisplayString, l as createCommentVNode, C as defineStore, az as useStorage, aF as watch, af as resolveComponent, aK as withKeys, F as Fragment, ab as renderList, j as createBlock, at as useEventListener, L as isRef, ah as resolveDirective, aJ as withDirectives, s as createTextVNode, a5 as pushScopeId, a4 as popScopeId, aE as vShow, x as defineAsyncComponent, a6 as reactive, R as normalizeStyle, T as Transition, aB as useTitle, Y as onMounted, g as createApp, p as createPinia, a3 as plugin } from "./vendor-DxZlYKFk.js";
-import { i as isDark, d as customLogos, h as histoireConfig, t as toggleDark, r as router, _ as __vitePreload, f as files, m as mapFile, e as tree, a as _sfc_main$c } from "./GenericMountStory.vue2-B-mEtBHn.js";
+import { i as isDark, d as customLogos, h as histoireConfig, t as toggleDark, r as router, _ as __vitePreload, f as files, m as mapFile, e as tree, a as _sfc_main$c } from "./GenericMountStory.vue2-DjWFsivF.js";
 import { u as useScrollOnActive, B as BaseListItemLink, _ as _export_sfc, b as _sfc_main$b, i as isMobile, a as BaseSplitPane } from "./MobileOverlay.vue2-BfU9Cym7.js";
-import { u as useStoryStore } from "./story-DCu4s0OH.js";
+import { u as useStoryStore } from "./story-CmIyOAwz.js";
 const _hoisted_1$a = { class: "bind-tree-margin htw-flex htw-items-center htw-gap-2 htw-pl-4 htw-min-w-0" };
 const _hoisted_2$6 = { class: "htw-truncate" };
 const _hoisted_3$5 = {
@@ -609,7 +609,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   },
   setup(__props, { emit: __emit }) {
     const SearchPane = defineAsyncComponent({
-      loader: () => __vitePreload(() => import("./SearchPane.vue-Dvqc6R2W.js"), true ? __vite__mapDeps([0,1,2,3,4,5]) : void 0),
+      loader: () => __vitePreload(() => import("./SearchPane.vue-abf9xT-e.js"), true ? __vite__mapDeps([0,1,2,3,4,5]) : void 0),
       loadingComponent: _sfc_main$3,
       delay: 0
     });

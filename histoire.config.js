@@ -9,8 +9,8 @@ export default defineConfig({
   theme: {
     title: 'Plantillas',
     logo: {
-      square: '/plantillas/logo.svg',
-      landscape: '/plantillas/logo.svg',
+      square: '/src/logo.svg',
+      landscape: '/src/logo.svg',
     },
   },
 })

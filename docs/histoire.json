@@ -102,6 +102,29 @@
       "markdownFile": null
     },
     {
+      "id": "src-components-layout-default-c-layout-default-story-vue",
+      "title": "c-layout-default",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-layout-default-c-layout-default-story-vue-0",
+          "title": "Default"
+        }
+      ],
+      "relativePath": "src/components/layout/default/c-layout-default.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-layout-default"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
       "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
       "title": "m-header-logo-nav",
       "layout": {
@@ -128,29 +151,6 @@
       "treePath": [
         "Modules",
         "m-header-logo-nav"
-      ],
-      "virtual": false,
-      "markdownFile": null
-    },
-    {
-      "id": "src-components-layout-default-c-layout-default-story-vue",
-      "title": "c-layout-default",
-      "layout": {
-        "type": "single",
-        "iframe": true
-      },
-      "docsOnly": false,
-      "variants": [
-        {
-          "id": "src-components-layout-default-c-layout-default-story-vue-0",
-          "title": "Default"
-        }
-      ],
-      "relativePath": "src/components/layout/default/c-layout-default.story.vue",
-      "supportPluginId": "vue3",
-      "treePath": [
-        "Components",
-        "c-layout-default"
       ],
       "virtual": false,
       "markdownFile": null
