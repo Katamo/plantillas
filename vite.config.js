@@ -3,7 +3,10 @@ import vue from '@vitejs/plugin-vue'
 import { HstVue } from '@histoire/plugin-vue'
 import { resolve } from 'path'
 
+const isHistoire = process.env.npm_lifecycle_event?.startsWith('story')
+
 export default defineConfig({
+  base: isHistoire ? '/plantillas/' : '/',
   plugins: [vue(), HstVue()],
   resolve: {
     alias: {
