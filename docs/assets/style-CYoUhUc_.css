@@ -3367,6 +3367,113 @@ body {
  *   @forward '@bedrock/core' with ($var: value)
  * and then relayed into the setup sub-modules.
  */
+:root {
+  --m-header-logo-nav-height: 80px;
+  --m-header-logo-nav-height-min: 56px;
+  --m-header-logo-nav-shrink-start: 0px;
+  --m-header-logo-nav-shrink-distance: 200px;
+}
+.m-header-logo-nav {
+  --scroll-shrink-max: var(--m-header-logo-nav-height);
+  --scroll-shrink-min: var(--m-header-logo-nav-height-min);
+  --scroll-shrink-start: var(--m-header-logo-nav-shrink-start);
+  --scroll-shrink-distance: var(--m-header-logo-nav-shrink-distance);
+  display: flex;
+  height: var(--m-header-logo-nav-height);
+  position: relative;
+}
+.m-header-logo-nav [data-grid-layout=header] {
+  display: grid;
+  height: 100%;
+  grid-template-areas: "logo nav";
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=logo] {
+  grid-area: logo;
+  justify-self: start;
+  align-self: stretch;
+  min-height: 0;
+  display: flex;
+}
+.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=nav] {
+  grid-area: nav;
+  justify-self: end;
+  align-self: center;
+}
+.m-header-logo-nav[data-background=dark] {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}/**
+ * Core Entry Point
+ * Exposes tools and tokens without emitting CSS.
+ *
+ * Variables are declared here so they can be configured externally via:
+ *   @forward '@bedrock/core' with ($var: value)
+ * and then relayed into the setup sub-modules.
+ */
+/**
+ * Calcula el espaciado basado en un multiplicador
+ * @param {Number} $multiplier - Multiplicador del token base
+ * @return {Number} Valor calculado
+ */
+@keyframes blink {
+0% {
+    opacity: 0;
+}
+50% {
+    opacity: 1;
+}
+100% {
+    opacity: 0;
+}
+}
+/**
+ * Removes unit from a css value prop
+ * @params $num the value to strip
+ * @returns the value without unit
+ */
+/**
+ * Private function Convert a single value to rem, this function is meant to be internal, use pxToRem instead
+ * @param $value the value to convert
+ * @param $base-value the default value to calculate the rems 16px by default
+ * @return the value converted to rems
+ */
+/**
+ * Converts series of values from px to rem
+ * Usage: padding: pxToRem(24px 24px); -> padding: 1.25rem 1.25rem;
+ *
+ * @param $values set of values to convert, useful for example for groups of units
+ * @param $base-value the default value to calculate the rems 16px by default
+ * @return the set of values converted to rems
+ */
+/**
+ * eval is a unit is a number or not
+ * @param $value the unit to be evaluated
+ * @return true if is a number, false otherwise
+ */
+/**
+ * Evals if a value is set in px
+ * @param $value the prop to be evaluated
+ * @return true if the value is set in pixels, false otherwise
+ */
+/**
+ * grid-layout
+ * Applies grid styles to the element or its descendant that matches the layout name.
+ * Automatically applies 'display: grid'.
+ */
+/**
+ * grid-area
+ * Assigns the element or its descendant to the specified grid area.
+ */
+/**
+ * Core Entry Point
+ * Exposes tools and tokens without emitting CSS.
+ *
+ * Variables are declared here so they can be configured externally via:
+ *   @forward '@bedrock/core' with ($var: value)
+ * and then relayed into the setup sub-modules.
+ */
 & [data-grid-layout=blog] {
   display: grid;
   grid-template-areas: "header" "main";
@@ -3471,111 +3578,4 @@ body {
 }
 & [data-grid-layout=default] > [data-grid-area=footer] {
   grid-area: footer;
-}/**
- * Core Entry Point
- * Exposes tools and tokens without emitting CSS.
- *
- * Variables are declared here so they can be configured externally via:
- *   @forward '@bedrock/core' with ($var: value)
- * and then relayed into the setup sub-modules.
- */
-/**
- * Calcula el espaciado basado en un multiplicador
- * @param {Number} $multiplier - Multiplicador del token base
- * @return {Number} Valor calculado
- */
-@keyframes blink {
-0% {
-    opacity: 0;
-}
-50% {
-    opacity: 1;
-}
-100% {
-    opacity: 0;
-}
-}
-/**
- * Removes unit from a css value prop
- * @params $num the value to strip
- * @returns the value without unit
- */
-/**
- * Private function Convert a single value to rem, this function is meant to be internal, use pxToRem instead
- * @param $value the value to convert
- * @param $base-value the default value to calculate the rems 16px by default
- * @return the value converted to rems
- */
-/**
- * Converts series of values from px to rem
- * Usage: padding: pxToRem(24px 24px); -> padding: 1.25rem 1.25rem;
- *
- * @param $values set of values to convert, useful for example for groups of units
- * @param $base-value the default value to calculate the rems 16px by default
- * @return the set of values converted to rems
- */
-/**
- * eval is a unit is a number or not
- * @param $value the unit to be evaluated
- * @return true if is a number, false otherwise
- */
-/**
- * Evals if a value is set in px
- * @param $value the prop to be evaluated
- * @return true if the value is set in pixels, false otherwise
- */
-/**
- * grid-layout
- * Applies grid styles to the element or its descendant that matches the layout name.
- * Automatically applies 'display: grid'.
- */
-/**
- * grid-area
- * Assigns the element or its descendant to the specified grid area.
- */
-/**
- * Core Entry Point
- * Exposes tools and tokens without emitting CSS.
- *
- * Variables are declared here so they can be configured externally via:
- *   @forward '@bedrock/core' with ($var: value)
- * and then relayed into the setup sub-modules.
- */
-:root {
-  --m-header-logo-nav-height: 80px;
-  --m-header-logo-nav-height-min: 56px;
-  --m-header-logo-nav-shrink-start: 0px;
-  --m-header-logo-nav-shrink-distance: 200px;
-}
-.m-header-logo-nav {
-  --scroll-shrink-max: var(--m-header-logo-nav-height);
-  --scroll-shrink-min: var(--m-header-logo-nav-height-min);
-  --scroll-shrink-start: var(--m-header-logo-nav-shrink-start);
-  --scroll-shrink-distance: var(--m-header-logo-nav-shrink-distance);
-  display: flex;
-  height: var(--m-header-logo-nav-height);
-  position: relative;
-}
-.m-header-logo-nav [data-grid-layout=header] {
-  display: grid;
-  height: 100%;
-  grid-template-areas: "logo nav";
-  grid-template-columns: auto 1fr;
-  align-items: center;
-}
-.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=logo] {
-  grid-area: logo;
-  justify-self: start;
-  align-self: stretch;
-  min-height: 0;
-  display: flex;
-}
-.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=nav] {
-  grid-area: nav;
-  justify-self: end;
-  align-self: center;
-}
-.m-header-logo-nav[data-background=dark] {
-  background-color: #1a1a1a;
-  color: #f5f5f5;
 }

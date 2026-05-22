@@ -75,6 +75,37 @@
       "markdownFile": null
     },
     {
+      "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
+      "title": "m-header-logo-nav",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-0",
+          "title": "Default"
+        },
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-1",
+          "title": "background dark"
+        },
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-2",
+          "title": "shrink"
+        }
+      ],
+      "relativePath": "src/modules/header/logo-nav/m-header-logo-nav.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Modules",
+        "m-header-logo-nav"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
       "id": "src-components-layout-blog-c-layout-blog-story-vue",
       "title": "c-layout-blog",
       "layout": {
@@ -120,37 +151,6 @@
       "treePath": [
         "Components",
         "c-layout-default"
-      ],
-      "virtual": false,
-      "markdownFile": null
-    },
-    {
-      "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
-      "title": "m-header-logo-nav",
-      "layout": {
-        "type": "single",
-        "iframe": true
-      },
-      "docsOnly": false,
-      "variants": [
-        {
-          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-0",
-          "title": "Default"
-        },
-        {
-          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-1",
-          "title": "background dark"
-        },
-        {
-          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-2",
-          "title": "shrink"
-        }
-      ],
-      "relativePath": "src/modules/header/logo-nav/m-header-logo-nav.story.vue",
-      "supportPluginId": "vue3",
-      "treePath": [
-        "Modules",
-        "m-header-logo-nav"
       ],
       "virtual": false,
       "markdownFile": null
