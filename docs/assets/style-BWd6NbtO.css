@@ -3367,43 +3367,26 @@ body {
  *   @forward '@bedrock/core' with ($var: value)
  * and then relayed into the setup sub-modules.
  */
-:root {
-  --m-header-logo-nav-height: 80px;
-  --m-header-logo-nav-height-min: 56px;
-  --m-header-logo-nav-shrink-start: 0px;
-  --m-header-logo-nav-shrink-distance: 200px;
-}
-.m-header-logo-nav {
-  --scroll-shrink-max: var(--m-header-logo-nav-height);
-  --scroll-shrink-min: var(--m-header-logo-nav-height-min);
-  --scroll-shrink-start: var(--m-header-logo-nav-shrink-start);
-  --scroll-shrink-distance: var(--m-header-logo-nav-shrink-distance);
-  display: flex;
-  height: var(--m-header-logo-nav-height);
-  position: relative;
-}
-.m-header-logo-nav [data-grid-layout=header] {
+& [data-grid-layout=blog] {
   display: grid;
-  height: 100%;
-  grid-template-areas: "logo nav";
-  grid-template-columns: auto 1fr;
-  align-items: center;
+  grid-template-areas: "header" "main";
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  grid-template-columns: minmax(0, 1fr);
 }
-.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=logo] {
-  grid-area: logo;
-  justify-self: start;
-  align-self: stretch;
-  min-height: 0;
+& [data-grid-layout=blog] > [data-grid-area=header] {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  z-index: z(header);
+}
+& [data-grid-layout=blog] > [data-grid-area=main] {
+  grid-area: main;
   display: flex;
+  flex-direction: column;
 }
-.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=nav] {
-  grid-area: nav;
-  justify-self: end;
-  align-self: center;
-}
-.m-header-logo-nav[data-background=dark] {
-  background-color: #1a1a1a;
-  color: #f5f5f5;
+& [data-grid-layout=blog] > [data-grid-area=main] > footer {
+  margin-top: auto;
 }/**
  * Core Entry Point
  * Exposes tools and tokens without emitting CSS.
@@ -3474,26 +3457,43 @@ body {
  *   @forward '@bedrock/core' with ($var: value)
  * and then relayed into the setup sub-modules.
  */
-& [data-grid-layout=blog] {
-  display: grid;
-  grid-template-areas: "header" "main";
-  grid-template-rows: auto 1fr;
-  min-height: 100vh;
-  grid-template-columns: minmax(0, 1fr);
+:root {
+  --m-header-logo-nav-height: 80px;
+  --m-header-logo-nav-height-min: 56px;
+  --m-header-logo-nav-shrink-start: 0px;
+  --m-header-logo-nav-shrink-distance: 200px;
 }
-& [data-grid-layout=blog] > [data-grid-area=header] {
-  grid-area: header;
-  position: sticky;
-  top: 0;
-  z-index: z(header);
-}
-& [data-grid-layout=blog] > [data-grid-area=main] {
-  grid-area: main;
+.m-header-logo-nav {
+  --scroll-shrink-max: var(--m-header-logo-nav-height);
+  --scroll-shrink-min: var(--m-header-logo-nav-height-min);
+  --scroll-shrink-start: var(--m-header-logo-nav-shrink-start);
+  --scroll-shrink-distance: var(--m-header-logo-nav-shrink-distance);
   display: flex;
-  flex-direction: column;
+  height: var(--m-header-logo-nav-height);
+  position: relative;
 }
-& [data-grid-layout=blog] > [data-grid-area=main] > footer {
-  margin-top: auto;
+.m-header-logo-nav [data-grid-layout=header] {
+  display: grid;
+  height: 100%;
+  grid-template-areas: "logo nav";
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=logo] {
+  grid-area: logo;
+  justify-self: start;
+  align-self: stretch;
+  min-height: 0;
+  display: flex;
+}
+.m-header-logo-nav [data-grid-layout=header] > [data-grid-area=nav] {
+  grid-area: nav;
+  justify-self: end;
+  align-self: center;
+}
+.m-header-logo-nav[data-background=dark] {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
 }/**
  * Core Entry Point
  * Exposes tools and tokens without emitting CSS.

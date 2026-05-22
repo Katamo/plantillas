@@ -75,6 +75,33 @@
       "markdownFile": null
     },
     {
+      "id": "src-components-layout-blog-c-layout-blog-story-vue",
+      "title": "c-layout-blog",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-layout-blog-c-layout-blog-story-vue-0",
+          "title": "Default — contenido corto"
+        },
+        {
+          "id": "src-components-layout-blog-c-layout-blog-story-vue-1",
+          "title": "Contenido largo — footer fuera del viewport"
+        }
+      ],
+      "relativePath": "src/components/layout/blog/c-layout-blog.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-layout-blog"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
       "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
       "title": "m-header-logo-nav",
       "layout": {
@@ -101,33 +128,6 @@
       "treePath": [
         "Modules",
         "m-header-logo-nav"
-      ],
-      "virtual": false,
-      "markdownFile": null
-    },
-    {
-      "id": "src-components-layout-blog-c-layout-blog-story-vue",
-      "title": "c-layout-blog",
-      "layout": {
-        "type": "single",
-        "iframe": true
-      },
-      "docsOnly": false,
-      "variants": [
-        {
-          "id": "src-components-layout-blog-c-layout-blog-story-vue-0",
-          "title": "Default — contenido corto"
-        },
-        {
-          "id": "src-components-layout-blog-c-layout-blog-story-vue-1",
-          "title": "Contenido largo — footer fuera del viewport"
-        }
-      ],
-      "relativePath": "src/components/layout/blog/c-layout-blog.story.vue",
-      "supportPluginId": "vue3",
-      "treePath": [
-        "Components",
-        "c-layout-blog"
       ],
       "virtual": false,
       "markdownFile": null
