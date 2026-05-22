@@ -1,0 +1,160 @@
+{
+  "stories": [
+    {
+      "id": "src-composables-use-scroll-shrink-usescrollshrink-story-vue",
+      "title": "useScrollShrink",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-composables-use-scroll-shrink-usescrollshrink-story-vue-0",
+          "title": "Default"
+        },
+        {
+          "id": "src-composables-use-scroll-shrink-usescrollshrink-story-vue-1",
+          "title": "Con start offset (empieza a los 100px de scroll)"
+        }
+      ],
+      "relativePath": "src/composables/use-scroll-shrink/useScrollShrink.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Composables",
+        "useScrollShrink"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-components-brand-logo-c-brand-logo-story-vue",
+      "title": "c-brand-logo",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-0",
+          "title": "Default — imagen + texto"
+        },
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-1",
+          "title": "image-only — sin texto"
+        },
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-2",
+          "title": "image-only — slot ignorado"
+        },
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-3",
+          "title": "text-image — texto izquierda"
+        },
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-4",
+          "title": "image-top — imagen arriba"
+        },
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-5",
+          "title": "text-top — texto arriba"
+        },
+        {
+          "id": "src-components-brand-logo-c-brand-logo-story-vue-6",
+          "title": "Como enlace"
+        }
+      ],
+      "relativePath": "src/components/brand/logo/c-brand-logo.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-brand-logo"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-components-layout-blog-c-layout-blog-story-vue",
+      "title": "c-layout-blog",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-layout-blog-c-layout-blog-story-vue-0",
+          "title": "Default — contenido corto"
+        },
+        {
+          "id": "src-components-layout-blog-c-layout-blog-story-vue-1",
+          "title": "Contenido largo — footer fuera del viewport"
+        }
+      ],
+      "relativePath": "src/components/layout/blog/c-layout-blog.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-layout-blog"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-components-layout-default-c-layout-default-story-vue",
+      "title": "c-layout-default",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-layout-default-c-layout-default-story-vue-0",
+          "title": "Default"
+        }
+      ],
+      "relativePath": "src/components/layout/default/c-layout-default.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-layout-default"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
+      "title": "m-header-logo-nav",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-0",
+          "title": "Default"
+        },
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-1",
+          "title": "background dark"
+        },
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-2",
+          "title": "shrink"
+        }
+      ],
+      "relativePath": "src/modules/header/logo-nav/m-header-logo-nav.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Modules",
+        "m-header-logo-nav"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    }
+  ],
+  "markdownFiles": []
+}
