@@ -1,0 +1,8 @@
+{
+  "name": "m-nav-drawer",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": ["c-close-button"],
+  "bedrock-components": [],
+  "tags": ["nav", "mobile", "drawer", "sidebar", "overlay"]
+}

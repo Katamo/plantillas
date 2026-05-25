@@ -1,0 +1,55 @@
+@use 'bedrock-config' as *;
+
+
+:root {
+    --m-nav-drawer-width: #{spacing(60)};
+    --m-nav-drawer-background: #{color(surface, alt)};
+    --m-nav-drawer-padding: #{spacing(6)};
+    --m-nav-drawer-backdrop-color: rgba(0, 0, 0, 0.3);
+}
+
+.m-nav-drawer__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--m-nav-drawer-backdrop-color);
+    z-index: z-layer(backdrop);
+}
+
+.m-nav-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--m-nav-drawer-width);
+    background-color: var(--m-nav-drawer-background);
+    padding: var(--m-nav-drawer-padding);
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+    z-index: z-layer(modal);
+
+    &__close {
+        align-self: flex-end;
+        margin-bottom: spacing(4);
+    }
+}
+
+.m-nav-drawer-fade-enter-active,
+.m-nav-drawer-fade-leave-active {
+    transition: opacity 200ms ease;
+}
+
+.m-nav-drawer-fade-enter-from,
+.m-nav-drawer-fade-leave-to {
+    opacity: 0;
+}
+
+.m-nav-drawer-slide-enter-active,
+.m-nav-drawer-slide-leave-active {
+    transition: transform 250ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.m-nav-drawer-slide-enter-from,
+.m-nav-drawer-slide-leave-to {
+    transform: translateX(100%);
+}

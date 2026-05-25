@@ -1,0 +1,19 @@
+@use 'bedrock-config' as *;
+
+:root {
+    --c-close-button-color: #{color(text, muted)};
+    --c-close-button-color-hover: #{color(text)};
+    --c-close-button-padding: #{spacing(2)};
+}
+
+.c-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--c-close-button-color);
+    padding: var(--c-close-button-padding);
+
+    @include hover {
+        color: var(--c-close-button-color-hover);
+    }
+}

@@ -11,7 +11,7 @@
   @include grid-area('header') {
     position: sticky;
     top: 0;
-    z-index: z(header);
+    z-index: z-layer(header);
   }
 
   @include grid-area('main') {

@@ -1,0 +1,7 @@
+{
+  "name": "c-layout-floating-header",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "tags": ["layout", "shell", "header", "fixed", "floating"]
+}

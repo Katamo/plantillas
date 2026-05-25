@@ -1,0 +1,8 @@
+{
+  "name": "c-close-button",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "bedrock-components": [],
+  "tags": ["nav", "mobile", "close", "dismiss"]
+}

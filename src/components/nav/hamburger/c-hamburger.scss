@@ -1,0 +1,44 @@
+@use 'bedrock-config' as *;
+
+:root {
+  --c-hamburger-size:      #{spacing(10)};
+  --c-hamburger-padding:   #{spacing(2)};
+  --c-hamburger-bar-gap:   5px;
+  --c-hamburger-bar-height: 2px;
+  --c-hamburger-bar-color: #{color(text)};
+}
+
+.c-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--c-hamburger-bar-gap);
+  width: var(--c-hamburger-size);
+  height: var(--c-hamburger-size);
+  padding: var(--c-hamburger-padding);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  span {
+    @include transition((transform, opacity), base, 0, (ease, base));
+    display: block;
+    width: 100%;
+    height: var(--c-hamburger-bar-height);
+    background-color: var(--c-hamburger-bar-color);
+    border-radius: 2px;
+  }
+
+  @include attr(open) {
+    span:nth-child(1) {
+      transform: translateY(calc(var(--c-hamburger-bar-gap) + var(--c-hamburger-bar-height))) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    span:nth-child(3) {
+      transform: translateY(calc(-1 * (var(--c-hamburger-bar-gap) + var(--c-hamburger-bar-height)))) rotate(-45deg);
+    }
+  }
+}

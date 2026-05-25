@@ -1,0 +1,31 @@
+@use 'bedrock-config' as *;
+
+:root {
+  --c-layout-floating-header-height: #{spacing(20)};
+}
+
+.c-layout-floating-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--c-layout-floating-header-height);
+    z-index: z-layer(header);
+  }
+
+  &__main {
+    flex: 1;
+    margin-top: var(--c-layout-floating-header-height);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__footer {
+    margin-top: auto;
+  }
+}
