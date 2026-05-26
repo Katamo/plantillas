@@ -1,0 +1,7 @@
+{
+  "name": "useIsScrolled",
+  "version": "1.0.0",
+  "type": "composable",
+  "dependencies": [],
+  "tags": ["scroll", "state", "context"]
+}

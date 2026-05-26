@@ -15,6 +15,7 @@
   "exports": {
     "./components/*": "./src/components/*",
     "./modules/*": "./src/modules/*",
+    "./composables/*": "./src/composables/*",
     "./styles/*": "./src/styles/*"
   },
   "scripts": {
