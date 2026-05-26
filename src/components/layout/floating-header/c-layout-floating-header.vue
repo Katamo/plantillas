@@ -1,5 +1,5 @@
 <template>
-  <div class="c-layout-floating-header">
+  <div class="c-layout-floating-header" :data-variant="variant !== 'fixed' ? variant : undefined">
     <header class="c-layout-floating-header__header">
       <slot name="header" />
     </header>
@@ -13,6 +13,9 @@
 </template>
 
 <script setup>
+defineProps({
+  variant: { type: String, default: 'fixed' },
+})
 </script>
 
 <style lang="scss" src="./c-layout-floating-header.scss" />

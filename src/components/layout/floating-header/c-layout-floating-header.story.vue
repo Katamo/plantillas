@@ -24,6 +24,23 @@ import docs from './c-layout-floating-header.md?raw'
       </CLayoutFloatingHeader>
     </Variant>
 
+    <Variant title="variant: absolute">
+      <div style="position: relative; min-height: 600px; background: #f5f5f5;">
+        <CLayoutFloatingHeader variant="absolute">
+          <template #header>
+            <div style="height: 100%; display: flex; align-items: center; padding: 0 24px; background: #1a1a1a; color: #fff;">
+              Header absoluto (relativo al contenedor)
+            </div>
+          </template>
+          <div style="padding: 24px;">
+            <p v-for="i in 15" :key="i" style="margin-bottom: 16px; color: #444;">
+              Párrafo {{ i }}. El header es absoluto, relativo a su contenedor posicionado.
+            </p>
+          </div>
+        </CLayoutFloatingHeader>
+      </div>
+    </Variant>
+
     <Variant title="Header transparente">
       <CLayoutFloatingHeader>
         <template #header>

@@ -18,6 +18,18 @@
     z-index: z-layer(header);
   }
 
+  @include attr(variant, absolute) {
+    position: relative;
+
+    .c-layout-floating-header__header {
+      position: absolute;
+    }
+
+    .c-layout-floating-header__main {
+      margin-top: 0;
+    }
+  }
+
   &__main {
     flex: 1;
     margin-top: var(--c-layout-floating-header-height);

@@ -1,17 +1,29 @@
 @use "bedrock-config" as *;
 
-$default-padding-inline: spacing(4);
+$default-padding-inline: spacing(2);
+$default-padding-inline-sm: spacing(4);
 
-@include setup-wrappers((
-  default: (
-    xxs: ( max-width: 1200px, padding-inline: $default-padding-inline ),
-  ),
-  header: (
-    xxs: (
-      max-width: 1200px,
-      padding-inline: $default-padding-inline,
-      width: 100%,
-      margin: 0 auto
+@include setup-wrappers(
+  (
+    default: (
+      xxs: (
+        max-width: 1200px,
+        padding-inline: $default-padding-inline,
       ),
-  ),
-));
+      sm: (
+        padding-inline: $default-padding-inline-sm,
+      ),
+    ),
+    header: (
+      xxs: (
+        max-width: 1200px,
+        padding-inline: $default-padding-inline,
+        width: 100%,
+        margin: 0 auto,
+      ),
+      sm: (
+        padding-inline: $default-padding-inline-sm,
+      ),
+    ),
+  )
+);
