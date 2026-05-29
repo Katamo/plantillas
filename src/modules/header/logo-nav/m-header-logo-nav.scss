@@ -1,4 +1,4 @@
-@use 'bedrock-config' as *;
+@use "bedrock-config" as *;
 
 :root {
   --m-header-logo-nav-height: #{spacing(20)};
@@ -17,20 +17,20 @@
   height: var(--m-header-logo-nav-height);
   position: relative;
 
-  @include grid-layout('header') {
+  @include grid-layout("header") {
     height: 100%;
     grid-template-areas: "logo nav";
     grid-template-columns: auto 1fr;
     align-items: center;
 
-    @include grid-area('logo') {
+    @include grid-area("logo") {
       justify-self: start;
-      align-self: stretch;
+      align-self: center;
       min-height: 0;
       display: flex;
     }
 
-    @include grid-area('nav') {
+    @include grid-area("nav") {
       justify-self: end;
       align-self: center;
     }
