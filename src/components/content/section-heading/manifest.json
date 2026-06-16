@@ -1,0 +1,8 @@
+{
+  "name": "c-section-heading",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "bedrock-components": [],
+  "tags": ["content", "heading", "section"]
+}

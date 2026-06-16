@@ -1,0 +1,48 @@
+@use 'bedrock-config' as *;
+
+:root {
+  --c-section-heading-gap: #{spacing(3)};
+  --c-section-heading-bar-width: #{spacing(1)};
+  --c-section-heading-bar-height: #{spacing(4)};
+}
+
+.c-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--c-section-heading-gap);
+
+  .heading {
+    display: flex;
+    align-items: center;
+    gap: var(--c-section-heading-gap);
+    min-width: 0;
+  }
+
+  .bar {
+    flex: 0 0 auto;
+    width: var(--c-section-heading-bar-width);
+    height: var(--c-section-heading-bar-height);
+    background-color: color(primary);
+  }
+
+  .index {
+    @include typeset(label);
+    color: color(primary);
+  }
+
+  .title {
+    @include typeset(h2);
+    overflow: hidden;
+    color: color(text);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: var(--c-section-heading-gap);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "c-card-media",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": [],
+  "bedrock-components": ["b-image"],
+  "tags": ["card", "media", "content", "listing"]
+}
