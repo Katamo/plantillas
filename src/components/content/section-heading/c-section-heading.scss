@@ -8,6 +8,9 @@
 
 .c-section-heading {
   display: flex;
+  // En contextos estrechos las acciones saltan a una segunda línea en vez
+  // de comprimir (y truncar) el título.
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--c-section-heading-gap);
@@ -31,12 +34,23 @@
     color: color(primary);
   }
 
+  // El título envuelve en contextos estrechos: un heading de sección
+  // nunca se trunca (perdería su significado).
   .title {
     @include typeset(h2);
-    overflow: hidden;
     color: color(text);
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  // El typeset acompaña al nivel semántico (prop `level`): un heading
+  // h3/h4 en columna estrecha no debe ocupar el tamaño de h2.
+  h3.title {
+    @include typeset(h3);
+  }
+
+  h4.title {
+    @include typeset(h4);
   }
 
   .actions {
@@ -44,5 +58,7 @@
     flex: 0 0 auto;
     align-items: center;
     gap: var(--c-section-heading-gap);
+    // Mantiene la alineación a la derecha también cuando salta de línea
+    margin-inline-start: auto;
   }
 }
