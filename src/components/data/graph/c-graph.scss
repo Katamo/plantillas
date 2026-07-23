@@ -1,0 +1,28 @@
+@use 'bedrock-config' as *;
+
+:root {
+  --c-graph-node-fill: #{color(primary)};
+  --c-graph-edge-color: #{color(text, muted)};
+  --c-graph-edge-color-dim: #{color(line)};
+  --c-graph-ink: #{color(text)};
+  --c-graph-surface: #{color(surface)};
+}
+
+.c-graph {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .c-graph__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  &[data-dragging] .c-graph__canvas {
+    cursor: grabbing;
+  }
+}

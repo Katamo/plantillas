@@ -1,0 +1,37 @@
+@use 'bedrock-config' as *;
+@use '@bedrock/core/pagination';
+@use '@bedrock/core/select';
+
+:root {
+  --m-data-table-footer-gap: #{spacing(4)};
+  --m-data-table-footer-padding-y: #{spacing(3)};
+}
+
+.m-data-table {
+  .m-data-table__footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--m-data-table-footer-gap);
+    padding-block: var(--m-data-table-footer-padding-y);
+  }
+
+  .m-data-table__range {
+    @include typeset(label);
+    margin: 0;
+    color: color(text, muted);
+  }
+
+  .m-data-table__pagination {
+    margin-inline: auto;
+  }
+
+  .m-data-table__size {
+    @include typeset(label);
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+    margin-inline-start: auto;
+    color: color(text, muted);
+  }
+}

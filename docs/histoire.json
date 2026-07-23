@@ -24,6 +24,29 @@
       "markdownFile": null
     },
     {
+      "id": "src-composables-use-multi-selection-usemultiselection-story-vue",
+      "title": "useMultiSelection",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-composables-use-multi-selection-usemultiselection-story-vue-0",
+          "title": "Lista con Ctrl/Shift"
+        }
+      ],
+      "relativePath": "src/composables/use-multi-selection/useMultiSelection.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Composables",
+        "useMultiSelection"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
       "id": "src-composables-use-scroll-shrink-usescrollshrink-story-vue",
       "title": "useScrollShrink",
       "layout": {
@@ -46,6 +69,87 @@
       "treePath": [
         "Composables",
         "useScrollShrink"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-composables-use-optional-model-useoptionalmodel-story-vue",
+      "title": "useOptionalModel",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-composables-use-optional-model-useoptionalmodel-story-vue-0",
+          "title": "No controlado — estado interno"
+        },
+        {
+          "id": "src-composables-use-optional-model-useoptionalmodel-story-vue-1",
+          "title": "Controlado — v-model del padre"
+        }
+      ],
+      "relativePath": "src/composables/use-optional-model/useOptionalModel.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Composables",
+        "useOptionalModel"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
+      "title": "m-header-logo-nav",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-0",
+          "title": "Default"
+        },
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-1",
+          "title": "background dark"
+        },
+        {
+          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-2",
+          "title": "shrink"
+        }
+      ],
+      "relativePath": "src/modules/header/logo-nav/m-header-logo-nav.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Modules",
+        "m-header-logo-nav"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-modules-nav-drawer-m-nav-drawer-story-vue",
+      "title": "m-nav-drawer",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-modules-nav-drawer-m-nav-drawer-story-vue-0",
+          "title": "Interactivo"
+        }
+      ],
+      "relativePath": "src/modules/nav/drawer/m-nav-drawer.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Modules",
+        "m-nav-drawer"
       ],
       "virtual": false,
       "markdownFile": null
@@ -98,6 +202,167 @@
       "markdownFile": null
     },
     {
+      "id": "src-components-data-data-table-c-data-table-story-vue",
+      "title": "c-data-table",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-0",
+          "title": "Default"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-1",
+          "title": "Ordenación interna (sortable)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-2",
+          "title": "Ordenación controlada (sort-mode external)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-3",
+          "title": "Selección múltiple Ctrl/Shift (selectable)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-4",
+          "title": "Columna de checkboxes + seleccionar todo (selection-column)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-5",
+          "title": "Resize + reordenar columnas (drag&drop)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-6",
+          "title": "Popover de columnas (botón derecho en cabecera)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-7",
+          "title": "Drag&drop de filas (rows-draggable)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-8",
+          "title": "Slots de celda y cabecera"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-9",
+          "title": "Menú contextual de fila (slot row-menu)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-10",
+          "title": "Loading"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-11",
+          "title": "Empty (texto personalizado)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-12",
+          "title": "Sticky header + scroll-to-top (200 filas)"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-13",
+          "title": "[density=compact]"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-14",
+          "title": "[striped]"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-15",
+          "title": "[bordered]"
+        },
+        {
+          "id": "src-components-data-data-table-c-data-table-story-vue-16",
+          "title": "Persistencia (storage-key)"
+        }
+      ],
+      "relativePath": "src/components/data/data-table/c-data-table.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-data-table"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-modules-data-data-table-m-data-table-story-vue",
+      "title": "m-data-table",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-modules-data-data-table-m-data-table-story-vue-0",
+          "title": "Modo cliente (137 filas)"
+        },
+        {
+          "id": "src-modules-data-data-table-m-data-table-story-vue-1",
+          "title": "Modo servidor (fetch simulado)"
+        },
+        {
+          "id": "src-modules-data-data-table-m-data-table-story-vue-2",
+          "title": "pageSizeOptions personalizadas"
+        },
+        {
+          "id": "src-modules-data-data-table-m-data-table-story-vue-3",
+          "title": "Con selección integrada"
+        },
+        {
+          "id": "src-modules-data-data-table-m-data-table-story-vue-4",
+          "title": "Empty"
+        }
+      ],
+      "relativePath": "src/modules/data/data-table/m-data-table.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Modules",
+        "m-data-table"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-components-content-section-heading-c-section-heading-story-vue",
+      "title": "c-section-heading",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-content-section-heading-c-section-heading-story-vue-0",
+          "title": "Default — barra + título"
+        },
+        {
+          "id": "src-components-content-section-heading-c-section-heading-story-vue-1",
+          "title": "Con índice"
+        },
+        {
+          "id": "src-components-content-section-heading-c-section-heading-story-vue-2",
+          "title": "Con acciones"
+        },
+        {
+          "id": "src-components-content-section-heading-c-section-heading-story-vue-3",
+          "title": "Sin barra, nivel h3"
+        }
+      ],
+      "relativePath": "src/components/content/section-heading/c-section-heading.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-section-heading"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
       "id": "src-components-layout-blog-c-layout-blog-story-vue",
       "title": "c-layout-blog",
       "layout": {
@@ -120,6 +385,37 @@
       "treePath": [
         "Components",
         "c-layout-blog"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-components-layout-floating-header-c-layout-floating-header-story-vue",
+      "title": "c-layout-floating-header",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-layout-floating-header-c-layout-floating-header-story-vue-0",
+          "title": "Default"
+        },
+        {
+          "id": "src-components-layout-floating-header-c-layout-floating-header-story-vue-1",
+          "title": "variant: absolute"
+        },
+        {
+          "id": "src-components-layout-floating-header-c-layout-floating-header-story-vue-2",
+          "title": "Header transparente"
+        }
+      ],
+      "relativePath": "src/components/layout/floating-header/c-layout-floating-header.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-layout-floating-header"
       ],
       "virtual": false,
       "markdownFile": null
@@ -148,8 +444,8 @@
       "markdownFile": null
     },
     {
-      "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue",
-      "title": "m-header-logo-nav",
+      "id": "src-components-nav-close-button-c-close-button-story-vue",
+      "title": "c-close-button",
       "layout": {
         "type": "single",
         "iframe": true
@@ -157,23 +453,50 @@
       "docsOnly": false,
       "variants": [
         {
-          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-0",
+          "id": "src-components-nav-close-button-c-close-button-story-vue-0",
           "title": "Default"
         },
         {
-          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-1",
-          "title": "background dark"
-        },
-        {
-          "id": "src-modules-header-logo-nav-m-header-logo-nav-story-vue-2",
-          "title": "shrink"
+          "id": "src-components-nav-close-button-c-close-button-story-vue-1",
+          "title": "Label personalizado"
         }
       ],
-      "relativePath": "src/modules/header/logo-nav/m-header-logo-nav.story.vue",
+      "relativePath": "src/components/nav/close-button/c-close-button.story.vue",
       "supportPluginId": "vue3",
       "treePath": [
-        "Modules",
-        "m-header-logo-nav"
+        "Components",
+        "c-close-button"
+      ],
+      "virtual": false,
+      "markdownFile": null
+    },
+    {
+      "id": "src-components-nav-hamburger-c-hamburger-story-vue",
+      "title": "c-hamburger",
+      "layout": {
+        "type": "single",
+        "iframe": true
+      },
+      "docsOnly": false,
+      "variants": [
+        {
+          "id": "src-components-nav-hamburger-c-hamburger-story-vue-0",
+          "title": "Default — cerrado"
+        },
+        {
+          "id": "src-components-nav-hamburger-c-hamburger-story-vue-1",
+          "title": "Open — abierto"
+        },
+        {
+          "id": "src-components-nav-hamburger-c-hamburger-story-vue-2",
+          "title": "Interactivo"
+        }
+      ],
+      "relativePath": "src/components/nav/hamburger/c-hamburger.story.vue",
+      "supportPluginId": "vue3",
+      "treePath": [
+        "Components",
+        "c-hamburger"
       ],
       "virtual": false,
       "markdownFile": null

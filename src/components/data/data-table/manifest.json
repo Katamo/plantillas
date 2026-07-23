@@ -1,0 +1,8 @@
+{
+  "name": "c-data-table",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": ["useOptionalModel", "useMultiSelection"],
+  "bedrock-components": ["BCheckbox"],
+  "tags": ["data", "table", "grid"]
+}

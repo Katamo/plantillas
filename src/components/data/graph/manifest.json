@@ -1,0 +1,8 @@
+{
+  "name": "c-graph",
+  "version": "1.0.0",
+  "type": "component",
+  "dependencies": ["useOptionalModel"],
+  "bedrock-components": [],
+  "tags": ["data", "graph", "network", "visualization", "canvas"]
+}

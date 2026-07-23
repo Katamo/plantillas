@@ -87,7 +87,17 @@
 
   $font-typeset: (
     // Typesets neutros que los componentes del catálogo requieren del
-    // proyecto consumidor (c-section-heading: h2, label)
+    // proyecto consumidor (c-section-heading: h2, label; c-data-table: body, label, caption)
+    body: (
+      bps: (
+        xxs: (
+          font-family: (system-ui, sans-serif),
+          font-weight: 400,
+          font-size: 14px,
+          line-height: 20px,
+        ),
+      ),
+    ),
     h2: (
       bps: (
         xxs: (
@@ -98,11 +108,31 @@
         ),
       ),
     ),
+    h3: (
+      bps: (
+        xxs: (
+          font-family: (system-ui, sans-serif),
+          font-weight: 600,
+          font-size: 17px,
+          line-height: 22px,
+        ),
+      ),
+    ),
     h4: (
       bps: (
         xxs: (
           font-family: (system-ui, sans-serif),
           font-weight: 600,
+          font-size: 14px,
+          line-height: 20px,
+        ),
+      ),
+    ),
+    input: (
+      bps: (
+        xxs: (
+          font-family: (system-ui, sans-serif),
+          font-weight: 400,
           font-size: 14px,
           line-height: 20px,
         ),

@@ -1,0 +1,8 @@
+{
+  "name": "m-data-table",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": ["c-data-table", "useOptionalModel"],
+  "bedrock-components": ["BPagination", "BSelect"],
+  "tags": ["data", "table", "pagination"]
+}

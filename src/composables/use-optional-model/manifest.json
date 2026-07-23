@@ -1,0 +1,7 @@
+{
+  "name": "useOptionalModel",
+  "version": "1.0.0",
+  "type": "composable",
+  "dependencies": [],
+  "tags": ["state", "v-model", "controlled"]
+}

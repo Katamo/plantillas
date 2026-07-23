@@ -1,0 +1,7 @@
+{
+  "name": "useMultiSelection",
+  "version": "1.0.0",
+  "type": "composable",
+  "dependencies": [],
+  "tags": ["selection", "keyboard", "list"]
+}

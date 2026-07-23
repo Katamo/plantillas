@@ -1,0 +1,331 @@
+@use 'bedrock-config' as *;
+@use '@bedrock/core/checkbox';
+
+:root {
+  // Celdas y cabecera
+  --c-data-table-cell-padding-y: #{spacing(2)};
+  --c-data-table-cell-padding-x: #{spacing(3)};
+  --c-data-table-header-padding-y: #{spacing(2)};
+  --c-data-table-header-bg: #{color(surface)};
+  --c-data-table-header-color: #{color(text, muted)};
+  --c-data-table-color: #{color(text)};
+
+  // Bordes y fondos de fila
+  --c-data-table-border-width: 1px;
+  --c-data-table-border-color: #{color(line)};
+  --c-data-table-row-hover-bg: #{color(grey, light)};
+  --c-data-table-row-selected-bg: #{color(primary, light)};
+  --c-data-table-stripe-bg: #{color(surface, alt)};
+  --c-data-table-accent: #{color(primary)};
+
+  // Indicadores e interacción
+  --c-data-table-sort-indicator-size: 5px;
+  --c-data-table-resize-handle-width: 6px;
+  --c-data-table-drop-indicator-width: 2px;
+  --c-data-table-selection-col-width: #{spacing(10)};
+
+  // Contenedor y estados
+  --c-data-table-max-height: none;
+  --c-data-table-state-padding: #{spacing(8)};
+
+  // Variante compact
+  --c-data-table-compact-padding-y: #{spacing(1)};
+
+  // Popover (menú de columnas y menú contextual)
+  --c-data-table-popover-bg: #{color(surface)};
+  --c-data-table-popover-min-width: 180px;
+  --c-data-table-popover-padding: #{spacing(2)};
+  --c-data-table-popover-radius: #{spacing(1)};
+  --c-data-table-popover-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --c-data-table-popover-z: #{z-layer(modal)};
+
+  // Botón scroll-to-top
+  --c-data-table-scroll-top-size: #{spacing(10)};
+  --c-data-table-scroll-top-offset: #{spacing(4)};
+}
+
+// Estado global durante el redimensionado de una columna: bloquea la
+// selección de texto y mantiene el cursor aunque el puntero salga del handle
+body.c-data-table-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.c-data-table {
+  position: relative;
+  color: var(--c-data-table-color);
+
+  .c-data-table__wrap {
+    max-height: var(--c-data-table-max-height);
+    overflow: auto;
+    outline: none;
+  }
+
+  .c-data-table__table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+
+  .c-data-table__col-selection {
+    width: var(--c-data-table-selection-col-width);
+    min-width: var(--c-data-table-selection-col-width);
+  }
+
+  .c-data-table__th {
+    @include typeset(label);
+    position: relative;
+    padding: var(--c-data-table-header-padding-y) var(--c-data-table-cell-padding-x);
+    background-color: var(--c-data-table-header-bg);
+    color: var(--c-data-table-header-color);
+    border-bottom: var(--c-data-table-border-width) solid var(--c-data-table-border-color);
+    text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+
+    &[data-align='center'] { text-align: center; }
+    &[data-align='right'] { text-align: end; }
+
+    // Columna ordenada: cabecera destacada
+    &[data-sorted] {
+      color: var(--c-data-table-accent);
+
+      .c-data-table__sort-indicator { opacity: 1; }
+    }
+
+    // El cambio de dirección no gira la flecha: la orientación cambia en seco
+    // y se suaviza con un fundido. Dos keyframes idénticos con nombre distinto
+    // para que la animación se reinicie al alternar asc/desc (con el mismo
+    // nombre el valor computado no cambiaría y no se relanzaría).
+    &[data-sorted='asc'] .c-data-table__sort-indicator {
+      animation: c-data-table-sort-fade-asc 0.2s ease-out;
+    }
+
+    &[data-sorted='desc'] .c-data-table__sort-indicator {
+      transform: rotate(180deg);
+      animation: c-data-table-sort-fade-desc 0.2s ease-out;
+    }
+
+    // Feedback del drag&drop de columnas
+    &[data-dragging] { opacity: 0.4; }
+
+    &[data-drop]::before {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      width: var(--c-data-table-drop-indicator-width);
+      background-color: var(--c-data-table-accent);
+    }
+
+    &[data-drop='before']::before { inset-inline-start: 0; }
+    &[data-drop='after']::before { inset-inline-end: 0; }
+
+    &[data-resizing] { background-color: var(--c-data-table-row-hover-bg); }
+  }
+
+  .c-data-table__sort-button {
+    @include typeset(label);
+    display: inline-flex;
+    align-items: center;
+    gap: spacing(1);
+    max-width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .c-data-table__sort-indicator {
+    @include transition((opacity), base);
+    flex: none;
+    width: 0;
+    height: 0;
+    border-inline: var(--c-data-table-sort-indicator-size) solid transparent;
+    border-bottom: calc(var(--c-data-table-sort-indicator-size) * 1.4) solid currentColor;
+    opacity: 0.25;
+  }
+
+  .c-data-table__resize {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: var(--c-data-table-resize-handle-width);
+    cursor: col-resize;
+    touch-action: none;
+
+    &::after {
+      @include transition((opacity), base);
+      content: '';
+      position: absolute;
+      inset-block: 20%;
+      inset-inline-end: 2px;
+      width: 2px;
+      border-radius: 1px;
+      background-color: var(--c-data-table-border-color);
+      opacity: 0;
+    }
+  }
+
+  .c-data-table__row {
+    // Fondo de fila resuelto en una única custom property: las variantes
+    // (striped, hover, selected) compiten reasignándola, no con selectores
+    --c-data-table-row-bg: transparent;
+
+    &[data-selected] { --c-data-table-row-bg: var(--c-data-table-row-selected-bg); }
+
+    &[data-clickable] { cursor: pointer; }
+
+    &[data-dragging] { opacity: 0.4; }
+
+    &[data-drop='before'] .c-data-table__td {
+      border-top: var(--c-data-table-drop-indicator-width) solid var(--c-data-table-accent);
+    }
+
+    &[data-drop='after'] .c-data-table__td {
+      border-bottom: var(--c-data-table-drop-indicator-width) solid var(--c-data-table-accent);
+    }
+  }
+
+  .c-data-table__td {
+    @include typeset(body);
+    padding: var(--c-data-table-cell-padding-y) var(--c-data-table-cell-padding-x);
+    background-color: var(--c-data-table-row-bg);
+    border-bottom: var(--c-data-table-border-width) solid var(--c-data-table-border-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &[data-align='center'] { text-align: center; }
+    &[data-align='right'] { text-align: end; }
+  }
+
+  .c-data-table__state {
+    @include typeset(body);
+    padding: var(--c-data-table-state-padding);
+    color: color(text, muted);
+    text-align: center;
+  }
+
+  .c-data-table__scroll-top {
+    @include typeset(label);
+    position: absolute;
+    inset-block-end: var(--c-data-table-scroll-top-offset);
+    inset-inline-end: var(--c-data-table-scroll-top-offset);
+    width: var(--c-data-table-scroll-top-size);
+    height: var(--c-data-table-scroll-top-size);
+    background-color: var(--c-data-table-header-bg);
+    border: var(--c-data-table-border-width) solid var(--c-data-table-border-color);
+    border-radius: 50%;
+    box-shadow: var(--c-data-table-popover-shadow);
+    cursor: pointer;
+  }
+
+  @include hover {
+    .c-data-table__row[data-clickable]:hover:not([data-selected]) {
+      --c-data-table-row-bg: var(--c-data-table-row-hover-bg);
+    }
+
+    .c-data-table__resize:hover::after { opacity: 1; }
+
+    .c-data-table__th:hover .c-data-table__resize::after { opacity: 0.6; }
+  }
+
+  @include attr(sticky) {
+    .c-data-table__th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+  }
+
+  @include attr(density, compact) {
+    --c-data-table-cell-padding-y: var(--c-data-table-compact-padding-y);
+    --c-data-table-header-padding-y: var(--c-data-table-compact-padding-y);
+  }
+
+  @include attr(striped) {
+    .c-data-table__row:nth-child(even):not([data-selected]) {
+      --c-data-table-row-bg: var(--c-data-table-stripe-bg);
+    }
+
+    // El hover debe seguir ganando a la franja alterna
+    @include hover {
+      .c-data-table__row[data-clickable]:hover:not([data-selected]) {
+        --c-data-table-row-bg: var(--c-data-table-row-hover-bg);
+      }
+    }
+  }
+
+  @include attr(bordered) {
+    .c-data-table__th,
+    .c-data-table__td {
+      border-inline-end: var(--c-data-table-border-width) solid var(--c-data-table-border-color);
+
+      &:last-child { border-inline-end: none; }
+    }
+  }
+
+  @include attr(loading) {
+    .c-data-table__body {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  }
+}
+
+// Popover y backdrop viven teletransportados en <body>: selectores raíz
+.c-data-table__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--c-data-table-popover-z);
+}
+
+.c-data-table__popover {
+  position: fixed;
+  z-index: calc(var(--c-data-table-popover-z) + 1);
+  min-width: var(--c-data-table-popover-min-width);
+  max-height: 70vh;
+  overflow: auto;
+  padding: var(--c-data-table-popover-padding);
+  background-color: var(--c-data-table-popover-bg);
+  border: var(--c-data-table-border-width) solid var(--c-data-table-border-color);
+  border-radius: var(--c-data-table-popover-radius);
+  box-shadow: var(--c-data-table-popover-shadow);
+
+  .c-data-table__popover-title {
+    @include typeset(caption);
+    margin: 0;
+    padding: spacing(1) spacing(2) spacing(2);
+    color: color(text, muted);
+    text-transform: uppercase;
+  }
+
+  .c-data-table__popover-item {
+    @include typeset(label);
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+    padding: spacing(1) spacing(2);
+    border-radius: var(--c-data-table-popover-radius);
+    cursor: pointer;
+  }
+
+  @include hover {
+    .c-data-table__popover-item:hover {
+      background-color: var(--c-data-table-row-hover-bg);
+    }
+  }
+}
+
+// Fundido del indicador de ordenación al alternar dirección (ver
+// [data-sorted] arriba): gemelos a propósito, solo cambia el nombre.
+@keyframes c-data-table-sort-fade-asc {
+  from { opacity: 0; }
+}
+
+@keyframes c-data-table-sort-fade-desc {
+  from { opacity: 0; }
+}
