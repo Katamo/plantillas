@@ -25,6 +25,10 @@ export function useForceLayout(nodesRef, edgesRef, configRef, radiusOfFn) {
   const positions = {} // id -> { x, y, vx, vy, fixed }
   let alpha = 1
   let raf = null
+  // El bucle de layout se para cuando alpha se enfría y no hay interacción, y
+  // se rearma en cada reheat (mutación / drag / cambio de config). Antes giraba
+  // en vacío para siempre — coste inútil en un grafo estático (PLT-004 tanda 1).
+  let running = false
 
   // Leído en cada tick (no cacheado), así que un cambio en caliente de
   // configRef.value se nota en el siguiente frame sin reiniciar el layout.
@@ -36,30 +40,75 @@ export function useForceLayout(nodesRef, edgesRef, configRef, radiusOfFn) {
     }
   }
 
-  function ensure(id) {
+  // `anchor` (opcional): posición de un nodo ya colocado junto al que nace el
+  // nuevo (con un pequeño jitter). En la expansión incremental del explorador
+  // (MAS-136) evita que los nodos nuevos entren volando desde el origen —
+  // nacen al lado del vecino que los trajo. Sin anchor, comportamiento de
+  // siempre: alrededor del origen.
+  function ensure(id, anchor) {
     if (!positions[id]) {
-      const angle = Math.random() * Math.PI * 2
-      const r = 40 + Math.random() * 40
-      positions[id] = { x: Math.cos(angle) * r, y: Math.sin(angle) * r, vx: 0, vy: 0, fixed: false }
+      if (anchor) {
+        const jitter = 30
+        positions[id] = {
+          x: anchor.x + (Math.random() - 0.5) * jitter,
+          y: anchor.y + (Math.random() - 0.5) * jitter,
+          vx: 0,
+          vy: 0,
+          fixed: false,
+        }
+      } else {
+        const angle = Math.random() * Math.PI * 2
+        const r = 40 + Math.random() * 40
+        positions[id] = { x: Math.cos(angle) * r, y: Math.sin(angle) * r, vx: 0, vy: 0, fixed: false }
+      }
     }
     return positions[id]
+  }
+
+  // Primer vecino de `id` que ya tenga posición — sirve de ancla para el nodo
+  // nuevo. O(E) por nodo nuevo, solo al añadir; despreciable frente al tick.
+  function anchorFor(id, edges) {
+    for (const e of edges) {
+      if (e.source === id && positions[e.target]) return positions[e.target]
+      if (e.target === id && positions[e.source]) return positions[e.source]
+    }
+    return null
   }
 
   watch(
     nodesRef,
     (nodes) => {
-      nodes.forEach((n) => ensure(n.id))
-      const ids = new Set(nodes.map((n) => n.id))
-      Object.keys(positions).forEach((id) => {
-        if (!ids.has(id)) delete positions[id]
+      const edges = edgesRef.value || []
+      const hadPositions = Object.keys(positions).length > 0
+      nodes.forEach((n) => {
+        if (!positions[n.id]) ensure(n.id, anchorFor(n.id, edges))
       })
-      reheat()
+      const ids = new Set(nodes.map((n) => n.id))
+      let removed = 0
+      Object.keys(positions).forEach((id) => {
+        if (!ids.has(id)) {
+          delete positions[id]
+          removed++
+        }
+      })
+      // Reheat moderado cuando solo se añade sobre un grafo ya colocado (el
+      // existente apenas debe reacomodarse); completo en la carga inicial o si
+      // hubo bajas estructurales.
+      reheat(hadPositions && removed === 0 ? 0.35 : 0.6)
     },
     { immediate: true }
   )
 
+  function start() {
+    if (!running) {
+      running = true
+      raf = requestAnimationFrame(tick)
+    }
+  }
+
   function reheat(amount = 0.6) {
     alpha = Math.max(alpha, amount)
+    start()
   }
 
   function setFixed(id, x, y) {
@@ -69,6 +118,9 @@ export function useForceLayout(nodesRef, edgesRef, configRef, radiusOfFn) {
     p.y = y
     p.vx = 0
     p.vy = 0
+    // Mantener la simulación viva mientras se arrastra para que los vecinos
+    // sigan al nodo fijado (si estaba fría, no se moverían).
+    reheat(0.2)
   }
 
   function release(id) {
@@ -163,15 +215,20 @@ export function useForceLayout(nodesRef, edgesRef, configRef, radiusOfFn) {
       })
 
       alpha *= 0.985
+      raf = requestAnimationFrame(tick)
+    } else {
+      // Frío y sin interacción: parar el bucle hasta el próximo reheat.
+      running = false
+      raf = null
     }
-    raf = requestAnimationFrame(tick)
   }
 
   onMounted(() => {
-    raf = requestAnimationFrame(tick)
+    start()
   })
   onBeforeUnmount(() => {
     if (raf) cancelAnimationFrame(raf)
+    running = false
   })
 
   return { positions, reheat, setFixed, release }

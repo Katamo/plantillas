@@ -9,6 +9,7 @@ Grafo de nodos y enlaces interactivo, renderizado en `<canvas>`: paneo, zoom, ar
 | `nodes` | `GraphNode[]` (requerido) | — | `{ id, label, group?, state?, size?, filled? }` |
 | `edges` | `GraphEdge[]` (requerido) | — | `{ source, target, label? }` (ids de `nodes`) |
 | `groupColors` | `Object` | `{}` | mapa `group -> color CSS`. Sin entrada para un grupo, usa `--c-graph-node-fill` |
+| `edgeColors` | `Object` | `{}` | mapa `edge.label -> color CSS`. Colorea la arista y su etiqueta por tipo; sin entrada usa `--c-graph-edge-color`. Las aristas atenuadas (fuera del foco) ignoran este color |
 | `hiddenIds` | `Array` | `[]` | ids a ocultar del dibujo y del hit-test — siguen simulados, así que al quitar el filtro no se reinicia el layout |
 | `selectedId` | `String` | `undefined` | v-model opcionalmente controlado (`v-model:selected-id`) |
 | `layoutConfig` | `Object` | `{}` | `{ repulsion?, springLength? }` — afinado en caliente (ver abajo) |
@@ -62,7 +63,19 @@ Grafo de nodos y enlaces interactivo, renderizado en `<canvas>`: paneo, zoom, ar
 
 - `useOptionalModel` (composable compartido de plantillas)
 
+## Carga incremental (PLT-004 tanda 1)
+
+El componente se puede usar de forma incremental cambiando reactivamente las props `nodes`/`edges` (añadir elementos al array), sin re-montar ni API imperativa nueva. Al detectar nodos nuevos:
+
+- **Se preservan las posiciones** de los nodos ya colocados (solo se inicializan los nuevos).
+- Un nodo nuevo **nace junto a un vecino ya posicionado** (por sus aristas) con un pequeño jitter, no en el origen — evita que entre "volando" desde el centro.
+- El `reheat` es **moderado** (`0.35`) cuando solo se añade sobre un grafo existente (el resto apenas se reacomoda) y completo (`0.6`) en la carga inicial o si hubo bajas.
+- El bucle de simulación **se detiene cuando el grafo se enfría** y no hay interacción, y se rearma solo en el siguiente `reheat` (mutación, drag o cambio de `layoutConfig`) — antes giraba en vacío indefinidamente. (El bucle de dibujo sí sigue activo para responder a paneo/zoom.)
+
+Sin cambios de API: `reheat`/`setFixed`/`release` y las props se mantienen. Los consumidores que cargan todo el grafo de una vez (morrofi/viewer, migas/viewer) no cambian de comportamiento, salvo que la simulación deja de girar en vacío al estabilizarse.
+
 ## Limitaciones conocidas
 
 - El texto dibujado en canvas (etiquetas de nodo/arista) usa una tipografía fija en JS (`system-ui, sans-serif`), no los typesets de Bedrock — `@include typeset()` es un mixin SCSS que solo aplica a texto DOM, no hay puente todavía para tipografía de canvas.
 - El layout es una simulación de fuerzas genérica de propósito general (repulsión + muelles + centrado + colisión mínima entre radios visuales), no una librería de grafos completa: no hay agrupación jerárquica, edge-bundling ni layouts alternativos (radial, jerárquico...).
+- **Rendimiento (PLT-004 tanda 2, pendiente)**: el layout sigue siendo O(n²) por tick en el hilo principal y el render redibuja todo sin culling — cómodo hasta ~300-500 nodos. Para 2-5k nodos fluidos hacen falta quadtree/Barnes-Hut, simulación en Web Worker y culling por viewport (no implementado todavía).

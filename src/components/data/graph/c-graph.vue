@@ -45,6 +45,10 @@ const props = defineProps({
   edges: { type: Array, required: true },
   // group -> color CSS (hex/rgb/var). Si un nodo no tiene color aquí, usa --c-graph-node-fill.
   groupColors: { type: Object, default: () => ({}) },
+  // label de arista -> color CSS. Colorea la arista (y su etiqueta) por tipo;
+  // si un edge.label no está aquí, usa --c-graph-edge-color. Las aristas
+  // atenuadas (fuera del foco) ignoran este color y usan el tono apagado.
+  edgeColors: { type: Object, default: () => ({}) },
   // ids que se ocultan del dibujo y del hit-test, pero siguen simulados (no se resetea el layout al filtrar)
   hiddenIds: { type: Array, default: () => [] },
   // selección opcionalmente controlada (v-model:selected-id)
@@ -80,9 +84,12 @@ function radiusOf(n) {
   return 7 + Math.sqrt((degree.value[n.id] || 1) * (n.size || 1)) * 5.5
 }
 
-const visibleNodes = computed(() => props.nodes.filter((n) => !props.hiddenIds.includes(n.id)))
+// Set en vez de Array.includes: el filtro se recomputa al cambiar nodos/aristas
+// o el filtro, y con muchos ocultos el .includes era O(n·m) (PLT-004 tanda 1).
+const hiddenSet = computed(() => new Set(props.hiddenIds))
+const visibleNodes = computed(() => props.nodes.filter((n) => !hiddenSet.value.has(n.id)))
 const visibleEdges = computed(() =>
-  props.edges.filter((e) => !props.hiddenIds.includes(e.source) && !props.hiddenIds.includes(e.target))
+  props.edges.filter((e) => !hiddenSet.value.has(e.source) && !hiddenSet.value.has(e.target))
 )
 
 const layoutConfigRef = computed(() => props.layoutConfig)
@@ -166,9 +173,11 @@ function draw() {
       const t = layout.positions[e.target]
       if (!s || !t) return
       const dim = focusSet && !(focusSet.has(e.source) && focusSet.has(e.target))
+      // Color por tipo de arista (prop edgeColors), salvo si está atenuada.
+      const custom = !dim && e.label ? props.edgeColors[e.label] : null
       const [x1, y1] = panZoom.worldToScreen(s.x, s.y, size)
       const [x2, y2] = panZoom.worldToScreen(t.x, t.y, size)
-      ctx.strokeStyle = dim ? edgeColorDim : edgeColor
+      ctx.strokeStyle = dim ? edgeColorDim : custom || edgeColor
       ctx.globalAlpha = dim ? 0.35 : 0.9
       ctx.lineWidth = dim ? 1 : 1.4
       ctx.beginPath()
@@ -178,7 +187,7 @@ function draw() {
 
       if (!dim && e.label && (props.edgeLabelsAlways || panZoom.zoom.value > 0.55)) {
         ctx.globalAlpha = 0.85
-        ctx.fillStyle = edgeColor
+        ctx.fillStyle = custom || edgeColor
         // Nota: el texto del canvas usa una tipografía fija en JS, no los
         // typesets de Bedrock (@include typeset solo aplica a DOM) — ver c-graph.md
         ctx.font = '10px system-ui, sans-serif'
